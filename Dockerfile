@@ -21,6 +21,7 @@ RUN chmod 600 /home/rancid/.cloginrc
 
 USER rancid
 RUN (crontab -l ; echo "0 */12 * * * /home/rancid/rancid/bin/rancid-run") | crontab
+RUN (crontab -l ; echo "* * * * * find /home/rancid/rancid/var/logs/* -mtime +0 -exec rm -f {} \;") | crontab
 USER root
 
 WORKDIR /home/rancid
