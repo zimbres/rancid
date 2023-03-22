@@ -1,0 +1,68 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rancid-conf
+data:
+  rancid.conf: |-
+    TERM=network;export TERM
+    LC_COLLATE="POSIX"; export LC_COLLATE
+    umask 027
+    PERL5LIB="/home/rancid/rancid/lib/rancid"; export PERL5LIB
+    TMPDIR=/tmp; export TMPDIR
+    BASEDIR=/home/rancid/rancid/var; export BASEDIR
+    PATH=/home/rancid/rancid/bin:/usr/bin:/usr/local/bin; export PATH
+    uid=`perl -e 'print "$>"'`
+    if [ -e /proc/1/cgroup ] ; then
+        DOCKER=`cat /proc/1/cgroup | grep "cpu.*\/docker"`
+    fi
+    test "x$DOCKER" = "x" && test "$uid" -eq 0 && echo "Do not run $0 as root!" && exit 1
+    SENDMAIL=""
+    CVSROOT=$BASEDIR/CVS; export CVSROOT
+    LOGDIR=$BASEDIR/logs; export LOGDIR
+    RCSSYS=git; export RCSSYS
+    FILTER_PWDS=NO; export FILTER_PWDS
+    LIST_OF_GROUPS="test switchs"
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cloginrc
+data:
+  .cloginrc: |-
+    add method * {ssh}
+    add user * {cisco}
+    add password * {cisco} {cisco}
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ssh-config
+data:
+  config: |-
+    Host *
+        StrictHostKeyChecking no
+    Host *
+        KexAlgorithms +diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha1,diffie-hellman-group1-sha1
+    Host *
+        HostKeyAlgorithms +ssh-rsa
+    Host *
+        Ciphers +aes128-cbc,3des-cbc,aes256-cbc,aes256-ctr
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gitconfig
+data:
+  .gitconfig: |-
+    [user]
+            email = rancid@domain.local
+            name = Rancid
+
+    [init]
+            defaultBranch = main
+
+    [safe]
+            directory = /home/rancid/rancid/var

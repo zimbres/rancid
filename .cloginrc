@@ -1,0 +1,3 @@
+add method * {ssh}
+add user * {cisco}
+add password * {cisco} {cisco}

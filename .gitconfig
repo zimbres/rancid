@@ -1,0 +1,9 @@
+[user]
+        email = rancid@domain.local
+        name = Rancid
+
+[init]
+        defaultBranch = main
+
+[safe]
+        directory = /home/rancid/rancid/var

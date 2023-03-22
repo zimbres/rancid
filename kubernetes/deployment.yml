@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rancid
+spec:
+  selector:
+    matchLabels:
+      app: rancid
+  template:
+    metadata:
+      labels:
+        app: rancid
+    spec:
+      securityContext:
+        fsGroup: 1000
+      volumes:
+        - name: rancid
+          persistentVolumeClaim:
+            claimName: rancid
+        - name: rancid-conf
+          configMap:
+            name: rancid-conf
+        - name: cloginrc
+          configMap:
+            name: cloginrc
+            defaultMode: 0600
+        - name: ssh-config
+          configMap:
+            name: ssh-config
+        - name: id-rsa
+          secret:
+            secretName: id-rsa
+            defaultMode: 0600
+        - name: gitconfig
+          configMap:
+            name: gitconfig
+      containers:
+      - name: rancid
+        image: zimbres/rancid
+        volumeMounts:
+          - name: rancid
+            mountPath: /home/rancid/rancid/var
+          - name: rancid-conf
+            mountPath: /home/rancid/rancid/etc/rancid.conf
+            subPath: rancid.conf
+          - name: cloginrc
+            mountPath: /home/rancid/.cloginrc
+            subPath: .cloginrc
+          - name: ssh-config
+            mountPath: /home/rancid/.ssh/config
+            subPath: config
+          - name: id-rsa
+            mountPath: /home/rancid/.ssh/id_rsa
+            subPath: id_rsa
+          - name: gitconfig
+            mountPath: /home/rancid/.gitconfig
+            subPath: .gitconfig
