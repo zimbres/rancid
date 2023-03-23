@@ -6,6 +6,7 @@ RUN apt update && \
     apt install git expect iputils-ping nano supervisor cron -y
 
 RUN useradd -ms /bin/bash rancid
+RUN usermod -a -G tty rancid
 
 RUN mkdir /home/rancid/.ssh
 COPY .ssh/id_rsa /home/rancid/.ssh
