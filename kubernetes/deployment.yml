@@ -34,6 +34,9 @@ spec:
         - name: gitconfig
           configMap:
             name: gitconfig
+        - name: msmtprc
+          configMap:
+            name: msmtprc
       containers:
       - name: rancid
         image: zimbres/rancid
@@ -55,3 +58,6 @@ spec:
           - name: gitconfig
             mountPath: /home/rancid/.gitconfig
             subPath: .gitconfig
+          - name: msmtprc
+            mountPath: /home/rancid/.msmtprc
+            subPath: .msmtprc

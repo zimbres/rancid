@@ -22,6 +22,9 @@ data:
     RCSSYS=git; export RCSSYS
     FILTER_PWDS=NO; export FILTER_PWDS
     LIST_OF_GROUPS="test switchs"
+    MAILOPTS="-f bounces.go.here@example.com"; export MAILOPTS
+    SENDMAIL="msmtp"
+    MAILDOMAIN="@example.com"; export MAILDOMAIN
 
 ---
 apiVersion: v1
@@ -66,3 +69,19 @@ data:
 
     [safe]
             directory = /home/rancid/rancid/var
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: msmtprc
+data:
+  .msmtprc: |-
+    defaults
+
+    account local
+    host smtp4dev
+    port 25
+    from email@domain.local
+
+    account default : local

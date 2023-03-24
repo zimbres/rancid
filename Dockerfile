@@ -3,12 +3,13 @@ FROM ubuntu
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt update && \
-    apt install git expect iputils-ping nano supervisor cron -y
+    apt install git expect iputils-ping nano supervisor cron msmtp -y
 
 RUN useradd -ms /bin/bash rancid
 RUN usermod -a -G tty rancid
 
 RUN mkdir /home/rancid/.ssh
+COPY .msmtprc /home/rancid
 COPY .ssh/id_rsa /home/rancid/.ssh
 COPY .ssh/config /home/rancid/.ssh
 COPY rancid /home/rancid/rancid
