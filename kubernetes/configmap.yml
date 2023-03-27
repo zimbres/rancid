@@ -21,6 +21,7 @@ data:
     LOGDIR=$BASEDIR/logs; export LOGDIR
     RCSSYS=git; export RCSSYS
     FILTER_PWDS=NO; export FILTER_PWDS
+    MAX_ROUNDS=2; export MAX_ROUNDS
     LIST_OF_GROUPS="test switchs"
     MAILOPTS="-f bounces.go.here@example.com"; export MAILOPTS
     SENDMAIL="msmtp"
