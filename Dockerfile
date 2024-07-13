@@ -18,6 +18,7 @@ COPY .gitconfig /home/rancid
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 RUN chown rancid:rancid /home/rancid -R
+RUN chmod +x /home/rancid/rancid/bin/*
 RUN chmod 600 /home/rancid/.ssh/id_rsa
 RUN chmod 600 /home/rancid/.cloginrc
 
