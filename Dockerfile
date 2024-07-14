@@ -2,8 +2,8 @@ FROM ubuntu:noble
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt update && \
-    apt install git expect iputils-ping nano supervisor cron msmtp -y
+RUN apt update
+RUN apt install -y git expect iputils-ping nano supervisor cron msmtp && rm -rf /var/lib/apt/lists/*
 
 RUN useradd -ms /bin/bash rancid
 RUN usermod -a -G tty rancid
