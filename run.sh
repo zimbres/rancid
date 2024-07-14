@@ -7,7 +7,9 @@ fi
 
 if ! git -C /home/rancid/rancid/var rev-parse --is-inside-work-tree > /dev/null 2>&1; then
     echo "Not a git repo. Initializing..."
-    rm /home/rancid/rancid/var/.gitkeep
+    if [ -f /home/rancid/rancid/var/.gitkeep ]; then
+        rm /home/rancid/rancid/var/.gitkeep
+    fi
     git clone $REPO /home/rancid/rancid/var
 fi
 
