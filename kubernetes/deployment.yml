@@ -61,3 +61,8 @@ spec:
           - name: msmtprc
             mountPath: /home/rancid/.msmtprc
             subPath: .msmtprc
+        env:
+          - name: TZ
+            value: "America/Sao_Paulo"
+          - name: REPO
+            value: "git@git:Rancid/Rancid.git"

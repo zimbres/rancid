@@ -1,8 +1,11 @@
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: rancid-cronjob
+  name: rancid
 spec:
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
   schedule: "0 0 * * *"
   jobTemplate:
     spec:
@@ -13,6 +16,7 @@ spec:
         spec:
           securityContext:
             fsGroup: 1000
+          restartPolicy: Never
           volumes:
             - name: rancid
               persistentVolumeClaim:
@@ -21,8 +25,8 @@ spec:
               configMap:
                 name: rancid-conf
             - name: cloginrc
-              configMap:
-                name: cloginrc
+              secret:
+                secretName: cloginrc
                 defaultMode: 0600
             - name: ssh-config
               configMap:
@@ -61,3 +65,8 @@ spec:
                 - name: msmtprc
                   mountPath: /home/rancid/.msmtprc
                   subPath: .msmtprc
+              env:
+                - name: TZ
+                  value: "America/Sao_Paulo"
+                - name: REPO
+                  value: "git@git:Rancid/Rancid.git"
