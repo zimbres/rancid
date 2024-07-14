@@ -3,7 +3,7 @@ FROM ubuntu:noble
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt update
-RUN apt install -y git expect iputils-ping nano supervisor cron msmtp && rm -rf /var/lib/apt/lists/*
+RUN apt install -y git expect iputils-ping nano msmtp tzdata && rm -rf /var/lib/apt/lists/*
 
 RUN useradd -ms /bin/bash rancid
 RUN usermod -a -G tty rancid
@@ -15,17 +15,15 @@ COPY .ssh/config /home/rancid/.ssh
 COPY rancid /home/rancid/rancid
 COPY .cloginrc /home/rancid
 COPY .gitconfig /home/rancid
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY run.sh /home/rancid
 
 RUN chown rancid:rancid /home/rancid -R
 RUN chmod +x /home/rancid/rancid/bin/*
+RUN chmod +x /home/rancid/run.sh
 RUN chmod 600 /home/rancid/.ssh/id_rsa
 RUN chmod 600 /home/rancid/.cloginrc
 
 USER rancid
-RUN (crontab -l ; echo "0 0 * * * /home/rancid/rancid/bin/rancid-run") | crontab
-RUN (crontab -l ; echo "0 1 * * * find /home/rancid/rancid/var/logs/* -mtime +0 -exec rm -f {} \;") | crontab
-USER root
 
 WORKDIR /home/rancid
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+CMD ["/home/rancid/run.sh"]
