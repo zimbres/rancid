@@ -34,7 +34,7 @@ fi
 echo ""
 echo "[$(date)]: Running 'runcid'..."
 echo ""
-/home/rancid/rancid/bin/rancid-run
+/home/rancid/rancid/bin/rancid-run $1
 echo ""
 
 echo ""

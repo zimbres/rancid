@@ -569,7 +569,7 @@ cd $DIR/configs
 # The number of processes running at any given time can be
 # tailored to the specific installation.
 echo ""
-echo "Trying to get all of the configs."
+echo "Trying to get all of the configs for group $GROUP."
 par -q -n $PAR_COUNT -c 'rancid-fe "{}"' $devlistfile
 
 # This section will generate a list of missed routers
