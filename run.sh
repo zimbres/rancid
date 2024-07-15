@@ -17,6 +17,8 @@ if ! git -C "$DIR" rev-parse --is-inside-work-tree > /dev/null 2>&1; then
     fi
 
     git clone $REPO "$DIR"
+else
+    echo "Repo already initialized. Skiping..."
 fi
 
 /home/rancid/rancid/bin/rancid-run

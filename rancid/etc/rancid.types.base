@@ -143,38 +143,6 @@ cisco;command;ios::ShowLicense;show license feature
 cisco;command;ios::ShowLicense;show license
 cisco;command;ios::ShowLicense;show license summary
 cisco;command;ios::ShowActivationKey;show activation-key;ASA/PIX
-cisco;command;ios::ShowFlash;show flash:
-cisco;command;ios::DirSlotN;dir /all nvram:
-cisco;command;ios::DirSlotN;dir /all bootflash:
-cisco;command;ios::DirSlotN;dir /all slot0:
-cisco;command;ios::DirSlotN;dir /all disk0:
-cisco;command;ios::DirSlotN;dir /all slot1:
-cisco;command;ios::DirSlotN;dir /all disk1:
-cisco;command;ios::DirSlotN;dir /all slot2:
-cisco;command;ios::DirSlotN;dir /all disk2:
-cisco;command;ios::DirSlotN;dir /all harddisk:
-cisco;command;ios::DirSlotN;dir /all harddiska:
-cisco;command;ios::DirSlotN;dir /all harddiskb:
-cisco;command;ios::DirSlotN;dir /all sup-bootdisk:;c6500 sup32
-cisco;command;ios::DirSlotN;dir /all sup-bootflash:;c6500 ios
-cisco;command;ios::DirSlotN;dir /all sup-microcode:;c6500 ios
-cisco;command;ios::DirSlotN;dir /all slavenvram:
-cisco;command;ios::DirSlotN;dir /all slavebootflash:
-cisco;command;ios::DirSlotN;dir /all slaveslot0:
-cisco;command;ios::DirSlotN;dir /all slavedisk0:
-cisco;command;ios::DirSlotN;dir /all slaveslot1:
-cisco;command;ios::DirSlotN;dir /all slavedisk1:
-cisco;command;ios::DirSlotN;dir /all slaveslot2:
-cisco;command;ios::DirSlotN;dir /all slavedisk2:
-cisco;command;ios::DirSlotN;dir /all slavesup-bootflash:;c7600
-cisco;command;ios::DirSlotN;dir /all sec-nvram:
-cisco;command;ios::DirSlotN;dir /all sec-bootflash:
-cisco;command;ios::DirSlotN;dir /all sec-slot0:
-cisco;command;ios::DirSlotN;dir /all sec-disk0:
-cisco;command;ios::DirSlotN;dir /all sec-slot1:
-cisco;command;ios::DirSlotN;dir /all sec-disk1:
-cisco;command;ios::DirSlotN;dir /all sec-slot2:
-cisco;command;ios::DirSlotN;dir /all sec-disk2:
 cisco;command;ios::ShowContAll;show controllers
 cisco;command;ios::ShowContCbus;show controllers cbus
 cisco;command;ios::ShowDiagbus;show diagbus
