@@ -3,7 +3,7 @@ FROM ubuntu:noble
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt update
-RUN apt install -y git expect iputils-ping nano msmtp tzdata && rm -rf /var/lib/apt/lists/*
+RUN apt install -y git expect iputils-ping nano msmtp tzdata curl jq && rm -rf /var/lib/apt/lists/*
 
 RUN useradd -ms /bin/bash rancid
 RUN usermod -a -G tty rancid
