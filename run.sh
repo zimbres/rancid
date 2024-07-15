@@ -31,10 +31,17 @@ else
     echo ""
 fi
 
+groupToRun=$1
+
+groupName="$(echo $(hostname) | awk -F'.' '{print $2}' | awk -F'-' '{print $(NF-1)}' 2>/dev/null)"
+if [ -n "$groupName" ]; then
+    groupToRun="${!groupName}"
+fi
+
 echo ""
 echo "[$(date)]: Running 'runcid'..."
 echo ""
-/home/rancid/rancid/bin/rancid-run $1
+/home/rancid/rancid/bin/rancid-run $groupToRun
 echo ""
 
 echo ""
