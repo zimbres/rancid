@@ -196,5 +196,5 @@ END
 
 	echo
 	echo ending: `date`
-    ) >$LOGDIR/$GROUP.`date +%Y%m%d.%H%M%S` 2>&1 >/dev/null
+    ) >$LOGDIR/$GROUP.`date +%Y%m%d.%H%M%S` 2>&1 > ${LOG_OUTPUT:-/dev/null}
 done
