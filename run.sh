@@ -44,7 +44,7 @@ echo ""
 /home/rancid/rancid/bin/rancid-run $groupToRun
 echo ""
 
-if [ -n "$groupToRun" ]; then
+if [ -z "$groupToRun" ]; then
     echo ""
     echo "[$(date)]: Running 'cleanup logs'..."
     find "$DIR"/logs/* -mtime +0 -exec rm -f {} \;
