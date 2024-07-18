@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Starting..."
+echo "[$(date)]: Starting..."
 
 if [ -z "$REPO" ]; then
     echo ""
@@ -51,4 +51,4 @@ if [ -z "$groupToRun" ]; then
     echo ""
 fi
 
-echo "End."
+echo "[$(date)]: End."
