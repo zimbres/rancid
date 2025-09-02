@@ -1,4 +1,5 @@
 import os
+import pty
 import subprocess
 from enum import Enum
 
@@ -19,14 +20,16 @@ class Group(BaseModel):
 
 @app.post("/execute")
 def execute(group: Group = Depends()):
-
+    master_fd, slave_fd = pty.openpty()
     result = subprocess.run(
         ["rancid/bin/./rancid-run", group.groups.value],
-        capture_output=True,
-        text=True,
-        stdin=subprocess.DEVNULL,
-        check=True
+        stdout=slave_fd,
+        stderr=slave_fd,
+        stdin=slave_fd,
+        text=True
     )
+    os.close(slave_fd)
+    os.close(master_fd)
     return result.stdout
 
 @app.get("/health", response_model=Health)
