@@ -3,7 +3,7 @@ FROM ubuntu:noble
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt update
-RUN apt install -y git expect iputils-ping nano msmtp tzdata && rm -rf /var/lib/apt/lists/*
+RUN apt install -y python3 python3-fastapi python3-uvicorn git expect iputils-ping nano msmtp tzdata && rm -rf /var/lib/apt/lists/*
 
 RUN useradd -ms /bin/bash rancid
 RUN usermod -a -G tty rancid
@@ -16,6 +16,7 @@ COPY rancid /home/rancid/rancid
 COPY .cloginrc /home/rancid
 COPY .gitconfig /home/rancid
 COPY run.sh /home/rancid
+COPY main.py /home/rancid
 
 RUN chown rancid:rancid /home/rancid -R
 RUN chmod +x /home/rancid/rancid/bin/*
