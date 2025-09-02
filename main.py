@@ -22,7 +22,10 @@ def execute(group: Group = Depends()):
 
     result = subprocess.run(
         ["rancid/bin/./rancid-run", group.groups.value],
-        capture_output=True, text=True
+        capture_output=True,
+        text=True,
+        stdin=subprocess.DEVNULL,
+        check=True
     )
     return result.stdout
 
